@@ -1,6 +1,15 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const App = () => {
+  const [mealsData, setMealsData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://www.themealdb.com/api/json/v1/1/search.php?s=chicken")
+      .then((res) => setMealsData(res.data.meals));
+  });
+
   return (
     <div className="app-container">
       <h1>React Cooking App</h1>
